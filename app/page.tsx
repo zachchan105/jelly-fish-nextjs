@@ -1,101 +1,248 @@
-import Image from "next/image";
+'use client'
+
+import Image from 'next/image'
+import Link from 'next/link'
+import { FaYoutube, FaDiscord, FaTwitter } from 'react-icons/fa'
+import { motion } from 'framer-motion'
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
+import { useState, useEffect } from 'react'
+import { FiCopy, FiCheck } from 'react-icons/fi'
+
+const features = [
+  {
+    title: "Fair Launch on Pump.fun",
+    description: "Ensuring a level playing field for all participants from the start.",
+    icon: "🚀"
+  },
+  {
+    title: "No PreSale",
+    description: "Equal opportunity for everyone to acquire tokens at launch.",
+    icon: "🔒"
+  },
+  {
+    title: "Dedicated Core Team",
+    description: "A committed group of professionals working tirelessly for the project's success.",
+    icon: "👥"
+  },
+  {
+    title: "Disclosed Team Wallets",
+    description: "Transparency in token distribution and team holdings.",
+    icon: "💼"
+  },
+  {
+    title: "Weekly Livestreams",
+    description: "Regular updates and engagement with the community to maintain transparency.",
+    icon: "📺"
+  }
+]
+
+const teamMembers = [
+  { name: "Brandon", role: "Captain", image: "/team-1.jpg" },
+  { name: "NubMan", role: "First Mate", image: "/team-2.jpg" },
+  { name: "Logan", role: "Rigger", image: "/team-3.jpg" },
+  { name: "DeckHandz", role: "Bosun", image: "/team-4.jpg" }
+]
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const [copied, setCopied] = useState(false)
+  const [isClient, setIsClient] = useState(false)
+  const contractAddress = "GFreY9SAUz96P7qkF19A4dtA4TmZgtL9Gmu8gV9Kpump"
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
+
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(contractAddress)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
+
+  if (!isClient) {
+    return null // or a loading spinner
+  }
+
+  return (
+    <div className="min-h-screen bg-[#faf1ec] text-gray-800">
+      <header className="container mx-auto py-6 px-4 flex flex-col sm:flex-row justify-between items-center">
+        <motion.div 
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-2xl font-bold text-purple-700 mb-4 sm:mb-0"
+        >
+          Jelly Fish Coin
+        </motion.div>
+        <nav>
+          <ul className="flex flex-wrap justify-center space-x-4">
+            {["About", "Features", "Trading", "Team"].map((item) => (
+              <motion.li key={item} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
+                <a href={`#${item.toLowerCase()}`} className="text-gray-600 hover:text-purple-700">{item}</a>
+              </motion.li>
+            ))}
+            <motion.li whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
+              <a href="https://discord.gg/RHQqJ7Fec2" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-purple-700">Discord</a>
+            </motion.li>
+          </ul>
+        </nav>
+      </header>
+
+      <main>
+        <section id="about" className="container mx-auto text-center py-12 sm:py-20 px-4">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            <Image src="/jelly.webp" alt="Jelly Fish Coin Logo" width={200} height={200} className="mx-auto mb-8" />
+          </motion.div>
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="text-3xl sm:text-5xl font-bold text-purple-700 mb-4"
           >
-            Read our docs
-          </a>
-        </div>
+            Jelly Fish Coin
+          </motion.h1>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto"
+          >
+            A vibrant cryptocurrency platform dedicated to providing valuable insights and building a strong community known as the &apos;jelly gang&apos;.
+          </motion.p>
+        </section>
+
+        <section id="features" className="bg-purple-100 py-12 sm:py-16">
+          <div className="container mx-auto px-4">
+            <h2 className="text-2xl sm:text-3xl font-bold text-center text-purple-700 mb-8">Key Features</h2>
+            <div className="grid gap-6">
+              {features.map((feature, index) => (
+                <motion.div key={index} 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                >
+                  <Card>
+                    <CardHeader>
+                      <CardTitle className="flex items-center">
+                        <span className="text-2xl mr-2">{feature.icon}</span>
+                        {feature.title}
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p>{feature.description}</p>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="trading" className="container mx-auto py-12 sm:py-16 px-4">
+          <h2 className="text-2xl sm:text-3xl font-bold text-center text-purple-700 mb-8">Trading Information</h2>
+          <Card className="mb-6">
+            <CardHeader>
+              <CardTitle>Contract Address</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="flex items-center justify-between bg-gray-100 p-3 rounded-md">
+                <code className="text-sm sm:text-base break-all">{contractAddress}</code>
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Button variant="outline" size="icon" onClick={copyToClipboard}>
+                        {copied ? <FiCheck className="h-4 w-4" /> : <FiCopy className="h-4 w-4" />}
+                      </Button>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>{copied ? 'Copied!' : 'Copy to clipboard'}</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              </div>
+            </CardContent>
+          </Card>
+          <div className="grid gap-4 md:grid-cols-3">
+            {[
+              { name: "Raydium", href: "https://raydium.io/swap/?inputCurrency=sol&outputCurrency=4k3Dyjzvzp8eMZWUXbBCjEvwSkkk59S5iCNLY3QrkX6R&fixed=in&inputMint=sol&outputMint=GFreY9SAUz96P7qkF19A4dtA4TmZgtL9Gmu8gV9Kpump" },
+              { name: "Jupiter", href: "https://jup.ag/swap/SOL-GFreY9SAUz96P7qkF19A4dtA4TmZgtL9Gmu8gV9Kpump" },
+              { name: "Birdeye", href: "https://www.birdeye.so/token/GFreY9SAUz96P7qkF19A4dtA4TmZgtL9Gmu8gV9Kpump?chain=solana" }
+            ].map((platform, index) => (
+              <motion.div key={index} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Button asChild className="w-full bg-purple-700 text-white hover:bg-purple-800">
+                  <Link href={platform.href} target="_blank" rel="noopener noreferrer">
+                    {platform.name === "Birdeye" ? `${platform.name}` : `${platform.name}`}
+                  </Link>
+                </Button>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+
+        <section id="team" className="bg-purple-100 py-12 sm:py-16">
+          <div className="container mx-auto px-4">
+            <h2 className="text-2xl sm:text-3xl font-bold text-center text-purple-700 mb-8">Meet the Team</h2>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+              {teamMembers.map((member, index) => (
+                <motion.div key={index} 
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="flex flex-col items-center"
+                >
+                  <Avatar className="w-24 h-24 mb-4">
+                    <AvatarImage src={member.image} alt={member.name} />
+                    <AvatarFallback>{member.name[0]}</AvatarFallback>
+                  </Avatar>
+                  <h3 className="text-xl font-semibold text-purple-700">{member.name}</h3>
+                  <p className="text-gray-600">{member.role}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+      
+
+        <section id="roadmap" className="py-12 sm:py-16 bg-cover bg-center">
+          <div className="container mx-auto px-4">
+            <h2 className="text-2xl sm:text-3xl font-bold text-center text-purple-700 mb-8">Roadmap</h2>
+            <div className="flex justify-center">
+              <Image src="/roadmap.png" alt="Jelly Fish Coin Roadmap" width={900} height={850} className="object-contain" />
+            </div>
+          </div>
+        </section>
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+
+      
+
+      <footer className="bg-purple-700 text-white py-8">
+        <div className="container mx-auto px-4 flex flex-col sm:flex-row justify-between items-center">
+          <div className="text-center sm:text-left mb-4 sm:mb-0">
+            <p>© 2024 Jelly Fish Coin</p>
+            <p>Email: coinjellyfish@gmail.com</p>
+          </div>
+          <div className="flex space-x-4">
+            {[
+              { icon: FaYoutube, href: "https://www.youtube.com/@JellyFishCoin" },
+              { icon: FaDiscord, href: "https://discord.gg/RHQqJ7Fec2" },
+              { icon: FaTwitter, href: "https://x.com/CoinJellyf54307" }
+            ].map((social, index) => (
+              <motion.div key={index} whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.8 }}>
+                <Link href={social.href} target="_blank" rel="noopener noreferrer" className="text-white hover:text-purple-200">
+                  <social.icon size={24} />
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+        </div>
       </footer>
     </div>
-  );
+  )
 }
+
