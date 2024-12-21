@@ -140,7 +140,7 @@ export default function Home() {
             </div>
           </motion.div>
 
-          <div className="flex justify-center space-x-2">
+          <div className="flex flex-col sm:flex-row justify-center space-y-2 sm:space-y-0 sm:space-x-2">
             {[
               { name: "Raydium", href: "https://raydium.io/swap/?inputCurrency=sol&outputCurrency=4k3Dyjzvzp8eMZWUXbBCjEvwSkkk59S5iCNLY3QrkX6R&fixed=in&inputMint=sol&outputMint=GFreY9SAUz96P7qkF19A4dtA4TmZgtL9Gmu8gV9Kpump", icon: "/raydium.svg" },
               { name: "Jupiter", href: "https://jup.ag/swap/SOL-GFreY9SAUz96P7qkF19A4dtA4TmZgtL9Gmu8gV9Kpump", icon: "/jupiter.svg" },
