@@ -157,7 +157,20 @@ export default function Home() {
             ))}
           </div>
         </section>
-        
+
+        <section className="relative py-20 sm:py-32 bg-cover bg-center" style={{ backgroundImage: "url('/jellybanner.webp')" }}>
+          <div className="container mx-auto px-4 flex justify-center items-center h-full">
+            <Button
+              className="bg-gray-500 text-white py-4 px-8 text-lg rounded-lg border-2 border-purple-700 cursor-not-allowed"
+              style={{
+                backgroundColor: 'rgba(128, 128, 128, 1)',
+                boxShadow: '0 0 15px rgba(128, 90, 213, 0.7), 0 0 30px rgba(128, 90, 213, 0.5)',
+              }}
+            >
+              Web3 Portal — Coming Soon
+            </Button>
+          </div>
+        </section>
 
         <section id="features" className="bg-purple-100 py-12 sm:py-16">
           <div className="container mx-auto px-4">
@@ -270,43 +283,12 @@ export default function Home() {
             <div className="flex justify-center mb-8">
               <Image src="/roadmap.png" alt="Jelly Fish Coin Roadmap" width={900} height={850} className="object-contain" />
             </div>
-            <div className="text-gray-800 max-w-2xl mx-auto">
-              <h3 className="text-xl font-bold mb-4">Phase 6: Launch Jelly Faucet</h3>
-              <ul className="list-disc list-inside mb-6">
-                <li>Introduce the Jelly Faucet, which allows users to earn free Jelly Fish Coins by interacting with it daily.</li>
-                <li>Promote the faucet across social media and community platforms to attract new users.</li>
-              </ul>
-
-              <h3 className="text-xl font-bold mb-4">Phase 7: Achieve a $3 Million Market Cap</h3>
-              <ul className="list-disc list-inside mb-6">
-                <li>Announce the venue and dates for the exclusive Jelly Holders Conference.</li>
-                <li>Plan keynote speeches, workshops, and networking opportunities for Jelly Coin holders.</li>
-                <li>Provide early bird registration incentives to drive attendance.</li>
-                <li>Collaborate with industry experts and influencers to promote the conference.</li>
-              </ul>
-
-              <h3 className="text-xl font-bold mb-4">Phase 8: Achieve a $5 Million Market Cap</h3>
-              <ul className="list-disc list-inside mb-6">
-                <li>Get listed and updated on major platforms including Birdeye, CoinMarketCap (CMC), CoinGecko, and others.</li>
-                <li>Launch a comprehensive marketing campaign to highlight the new listings.</li>
-                <li>Partner with analytics platforms to improve visibility and credibility.</li>
-                <li>Host AMA (Ask Me Anything) sessions to engage with the community and build trust.</li>
-              </ul>
-
-              <h3 className="text-xl font-bold mb-4">Phase 9: Achieve a $10 Million Market Cap</h3>
-              <ul className="list-disc list-inside mb-6">
-                <li>Begin listing Jelly Fish Coin on platforms like Unmineable to reach a wider audience of miners and investors.</li>
-                <li>Introduce additional token use cases, such as DeFi integration or NFT collaborations.</li>
-                <li>Continue scaling marketing efforts to maintain momentum and attract institutional interest.</li>
-              </ul>
-
-              <h3 className="text-xl font-bold mb-4">Future Phases (Beyond $10 Million Market Cap)</h3>
-              <ul className="list-disc list-inside">
-                <li>Explore centralized exchange (CEX) listings for increased liquidity and accessibility.</li>
-                <li>Expand partnerships with ecosystem projects to diversify Jelly Coin use cases.</li>
-                <li>Launch Jelly Fish Coin educational initiatives to promote blockchain adoption and awareness.</li>
-                <li>Further Development TBD (To Be Determined) as the project grows.</li>
-              </ul>
+            <div className="flex justify-center">
+              <Button asChild className="bg-purple-700 text-white hover:bg-purple-800 py-3 px-6 text-base">
+                <Link href="https://github.com/SerpentXSF/Jelly-Fish-Coin/blob/main/README.md" target="_blank" rel="noopener noreferrer">
+                  View Extended Roadmap
+                </Link>
+              </Button>
             </div>
           </div>
         </section>
