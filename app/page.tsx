@@ -84,7 +84,7 @@ export default function Home() {
               </motion.li>
             ))}
             <motion.li whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
-              <a href="https://discord.gg/RHQqJ7Fec2" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-purple-700">Discord</a>
+              <a href="https://discord.gg/XNFstnBRfY" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-purple-700">Discord</a>
             </motion.li>
           </ul>
         </nav>
@@ -332,7 +332,7 @@ export default function Home() {
           <div className="flex space-x-4">
             {[
               { icon: FaYoutube, href: "https://www.youtube.com/@JellyFishCoin" },
-              { icon: FaDiscord, href: "https://discord.gg/RHQqJ7Fec2" },
+              { icon: FaDiscord, href: "https://discord.gg/XNFstnBRfY" },
               { icon: FaTwitter, href: "https://x.com/CoinJellyf54307" }
             ].map((social, index) => (
               <motion.div key={index} whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.8 }}>
