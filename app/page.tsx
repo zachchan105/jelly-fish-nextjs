@@ -10,6 +10,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 import { useState, useEffect } from 'react'
 import { FiCopy, FiCheck } from 'react-icons/fi'
+import { GlowingButton } from '@/components/GlowingButton'
 
 const features = [
   {
@@ -159,18 +160,13 @@ export default function Home() {
         </section>
 
         <section className="relative py-20 sm:py-32 bg-cover bg-center" style={{ backgroundImage: "url('/jellybanner.webp')" }}>
-          <div className="container mx-auto px-4 flex justify-center items-center h-full">
-            <Button
-              className="bg-gray-500 text-white py-4 px-8 text-lg rounded-lg border-2 border-purple-700 cursor-not-allowed"
-              style={{
-                backgroundColor: 'rgba(128, 128, 128, 1)',
-                boxShadow: '0 0 15px rgba(128, 90, 213, 0.7), 0 0 30px rgba(128, 90, 213, 0.5)',
-              }}
-            >
-              Web3 Portal — Coming Soon
-            </Button>
-          </div>
-        </section>
+      <div className="absolute inset-0 bg-gray-800 bg-opacity-50" />
+      <div className="container relative mx-auto px-4 flex justify-center items-center h-full">
+        <GlowingButton href="https://web3.jellyfc.com">
+          Jelly Web3 Portal
+        </GlowingButton>
+      </div>
+    </section>
 
         <section id="features" className="bg-purple-100 py-12 sm:py-16">
           <div className="container mx-auto px-4">
