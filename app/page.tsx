@@ -11,6 +11,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import { useState, useEffect } from 'react'
 import { FiCopy, FiCheck } from 'react-icons/fi'
 import { GlowingButton } from '@/components/GlowingButton'
+import { WalletMultiButton } from "@solana/wallet-adapter-react-ui"
 
 const features = [
   {
@@ -77,7 +78,7 @@ export default function Home() {
         >
           Jelly Fish Coin
         </motion.div>
-        <nav>
+        <nav className="flex items-center space-x-4">
           <ul className="flex flex-wrap justify-center space-x-4">
             {["About", "Features", "Trading", "Team"].map((item) => (
               <motion.li key={item} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
@@ -88,6 +89,9 @@ export default function Home() {
               <a href="https://discord.gg/XNFstnBRfY" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-purple-700">Discord</a>
             </motion.li>
           </ul>
+          <div className="hidden sm:block ml-4">
+            <WalletMultiButton className="bg-purple-700 text-white py-2 px-4 rounded-lg" />
+          </div>
         </nav>
       </header>
 
