@@ -15,23 +15,36 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://jelly-fish-nextjs.vercel.app"),
-  title: "Jelly Fish Coin",
-  description: "A vibrant cryptocurrency platform building the jelly gang community",
+  title: "Jelly Fish Coin | Made by the Jelly Gang on Solana",
+  description: "Dive into Jelly Fish Coin, the vibrant cryptocurrency platform created by the Jelly Gang and powered by the Solana blockchain. Join the movement today!",
   openGraph: {
     type: "website",
     url: "https://jelly-fish-nextjs.vercel.app",
-    title: "Jelly Fish Coin",
-    description: "A vibrant cryptocurrency platform building the jelly gang community",
+    title: "Jelly Fish Coin | Made by the Jelly Gang on Solana",
+    description: "Jelly Fish Coin is a vibrant cryptocurrency platform built by the Jelly Gang on the Solana blockchain. Be part of a thriving community and explore innovative crypto solutions.",
     images: [
       {
         url: "/opengraph-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Jelly Fish Coin Open Graph Image",
+        alt: "Jelly Fish Coin Open Graph Image | Made by the Jelly Gang on Solana",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    //site: "@jellyfishcoin", // Replace with the official Twitter handle
+    title: "Jelly Fish Coin | Made by the Jelly Gang on Solana",
+    description: "Join the Jelly Gang and explore Jelly Fish Coin, a community-driven token powered by the Solana blockchain. Dive into the vibrant world of crypto innovation.",
+    images: [
+      {
+        url: "/opengraph-image.jpg",
+        alt: "Jelly Fish Coin | Made by the Jelly Gang on Solana",
       },
     ],
   },
 };
+
 
 export default function RootLayout({
   children,
