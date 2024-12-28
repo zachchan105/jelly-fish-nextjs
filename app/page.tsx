@@ -89,9 +89,9 @@ export default function Home() {
               <a href="https://discord.gg/XNFstnBRfY" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-purple-700">Discord</a>
             </motion.li>
           </ul>
-          <div className="hidden sm:block ml-4">
+          {/* <div className="hidden sm:block ml-4">
             <WalletMultiButton className="bg-purple-700 text-white py-2 px-4 rounded-lg" />
-          </div>
+          </div> */}
         </nav>
       </header>
 
@@ -102,7 +102,7 @@ export default function Home() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
           >
-            <Image src="/jelly.webp" alt="Jelly Fish Coin Logo" width={200} height={200} className="mx-auto mb-8" />
+            <Image src="/jelly-removebg-preview.png" alt="Jelly Fish Coin Logo" width={200} height={200} className="mx-auto mb-8" />
           </motion.div>
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
@@ -198,83 +198,6 @@ export default function Home() {
             </div>
           </div>
         </section>
-
-        {/* <section id="trading" className="container mx-auto py-12 sm:py-16 px-4">
-          <h2 className="text-2xl sm:text-3xl font-bold text-center text-purple-700 mb-8">Trading Information</h2>
-          <Card className="mb-6">
-            <CardHeader>
-              <CardTitle>Contract Address</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="flex items-center justify-between bg-gray-100 p-3 rounded-md">
-                <code className="text-sm sm:text-base break-all">{contractAddress}</code>
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Button variant="outline" size="icon" onClick={copyToClipboard}>
-                        {copied ? <FiCheck className="h-4 w-4" /> : <FiCopy className="h-4 w-4" />}
-                      </Button>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>{copied ? 'Copied!' : 'Copy to clipboard'}</p>
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
-              </div>
-            </CardContent>
-          </Card>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.8 }}
-            className="grid gap-4 md:grid-cols-3"
-          >
-            {[
-              { name: "Raydium", href: "https://raydium.io/swap/?inputCurrency=sol&outputCurrency=4k3Dyjzvzp8eMZWUXbBCjEvwSkkk59S5iCNLY3QrkX6R&fixed=in&inputMint=sol&outputMint=GFreY9SAUz96P7qkF19A4dtA4TmZgtL9Gmu8gV9Kpump", icon: "/raydium.svg" },
-              { name: "Jupiter", href: "https://jup.ag/swap/SOL-GFreY9SAUz96P7qkF19A4dtA4TmZgtL9Gmu8gV9Kpump", icon: "/jupiter.svg" },
-              { name: "Birdeye", href: "https://www.birdeye.so/token/GFreY9SAUz96P7qkF19A4dtA4TmZgtL9Gmu8gV9Kpump?chain=solana", icon: "/birdseye.png" }
-            ].map((platform, index) => (
-              <motion.div 
-                key={index} 
-                whileHover={{ scale: 1.05 }} 
-                whileTap={{ scale: 0.95 }}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
-              >
-                <Button asChild className="w-full bg-purple-700 text-white hover:bg-purple-800 py-3 px-4 text-base flex items-center justify-center space-x-2">
-                  <Link href={platform.href} target="_blank" rel="noopener noreferrer">
-                    <Image src={platform.icon} alt={`${platform.name} icon`} width={20} height={20} className="inline-block white-svg" />
-                    <span>{platform.name === "Birdeye" ? `View on ${platform.name}` : `Trade on ${platform.name}`}</span>
-                  </Link>
-                </Button>
-              </motion.div>
-            ))}
-          </motion.div>
-        </section> */}
-{/* 
-        <section id="team" className="bg-purple-100 py-12 sm:py-16">
-          <div className="container mx-auto px-4">
-            <h2 className="text-2xl sm:text-3xl font-bold text-center text-purple-700 mb-8">Meet the Team</h2>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-              {teamMembers.map((member, index) => (
-                <motion.div key={index} 
-                  initial={{ opacity: 0, scale: 0.5 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="flex flex-col items-center"
-                >
-                  <Avatar className="w-24 h-24 mb-4">
-                    <AvatarImage src={member.image} alt={member.name} />
-                    <AvatarFallback>{member.name[0]}</AvatarFallback>
-                  </Avatar>
-                  <h3 className="text-xl font-semibold text-purple-700">{member.name}</h3>
-                  <p className="text-gray-600">{member.role}</p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section> */}
       
 
         <section id="roadmap" className="py-12 sm:py-16 bg-cover bg-center">

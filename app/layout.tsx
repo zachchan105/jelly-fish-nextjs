@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import AppWalletProvider from "@/components/AppWalletProvider";
+import { Toaster } from "@/components/ui/toaster"
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -65,6 +66,7 @@ export default function RootLayout({
           <AppWalletProvider>
             {children}
           </AppWalletProvider>
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>
