@@ -11,7 +11,21 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import { useState, useEffect } from 'react'
 import { FiCopy, FiCheck } from 'react-icons/fi'
 import { GlowingButton } from '@/components/GlowingButton'
+import { Youtube } from 'lucide-react'
 //import { WalletMultiButton } from "@solana/wallet-adapter-react-ui"
+
+type Video = {
+  id: string;
+  title: string;
+  thumbnail: string;
+  url: string;
+};
+
+function decodeHtmlEntities(text: string): string {
+  const textarea = document.createElement('textarea');
+  textarea.innerHTML = text;
+  return textarea.value;
+}
 
 const features = [
   {
@@ -51,11 +65,19 @@ const teamMembers = [
 export default function Home() {
   const [copied, setCopied] = useState(false)
   const [isClient, setIsClient] = useState(false)
+  const [recentVideos, setRecentVideos] = useState<Video[]>([]);
   const contractAddress = "GFreY9SAUz96P7qkF19A4dtA4TmZgtL9Gmu8gV9Kpump"
 
   useEffect(() => {
     setIsClient(true)
-  }, [])
+    async function fetchVideos() {
+      const response = await fetch('/api/youtube');
+      const data: Video[] = await response.json();
+      setRecentVideos(data);
+    }
+    fetchVideos();
+  }, []);
+
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(contractAddress)
@@ -133,7 +155,7 @@ export default function Home() {
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <Button variant="outline" size="icon" onClick={copyToClipboard} className="ml-2">
+                    <Button variant="outline" size="icon" onClick={copyToClipboard} className="ml-2 bg-gray-100 text-gray-800 hover:bg-gray-100 hover:text-gray-800">
                       {copied ? <FiCheck className="h-4 w-4" /> : <FiCopy className="h-4 w-4" />}
                     </Button>
                   </TooltipTrigger>
@@ -174,30 +196,54 @@ export default function Home() {
 
         <section id="features" className="bg-purple-100 py-12 sm:py-16">
           <div className="container mx-auto px-4">
-            <h2 className="text-2xl sm:text-3xl font-bold text-center text-purple-700 mb-8">Key Features</h2>
-            <div className="grid gap-6">
-              {features.map((feature, index) => (
-                <motion.div key={index} 
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                >
-                  <Card>
-                    <CardHeader>
-                      <CardTitle className="flex items-center">
-                        <span className="text-2xl mr-2">{feature.icon}</span>
-                        {feature.title}
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p>{feature.description}</p>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
+            <h2 className="text-2xl sm:text-3xl font-bold text-center text-purple-700 mb-8"></h2>
+            <div className="flex flex-col lg:flex-row gap-6">
+              <div className="flex-1">
+                {features.map((feature, index) => (
+                  <motion.div key={index} 
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                  >
+                    <Card className="bg-white text-gray-800 shadow-md rounded-lg mb-6">
+                      <CardHeader className="border-b border-gray-200">
+                        <CardTitle className="flex items-center">
+                          <span className="text-2xl mr-2">{feature.icon}</span>
+                          {feature.title}
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent className="p-4">
+                        <p>{feature.description}</p>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                ))}
+              </div>
+              <div className="flex-1">
+                <style jsx>{`
+                  #dexscreener-embed {
+                    position: relative;
+                    width: 100%;
+                    height: 100%;
+                  }
+                  #dexscreener-embed iframe {
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    top: 0;
+                    left: 0;
+                    border: 0;
+                  }
+                `}</style>
+                <div id="dexscreener-embed" className="h-full">
+                  <iframe src="https://dexscreener.com/solana/6BbXEfMfEVby5UpkLd8eKpUeEzVBDS1iEY24TN7zAx1q?embed=1&loadChartSettings=0&trades=0&tabs=0&info=0&chartLeftToolbar=0&chartTheme=dark&theme=light&chartStyle=0&chartType=usd&interval=15"></iframe>
+                </div>
+              </div>
             </div>
           </div>
         </section>
+
+        
       
 
         <section id="roadmap" className="py-12 sm:py-16 bg-cover bg-center">
@@ -236,6 +282,43 @@ export default function Home() {
                   <h3 className="text-xl font-semibold text-purple-700">{member.name}</h3>
                   <p className="text-gray-600">{member.role}</p>
                 </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="py-8">
+          <div className="container mx-auto px-4">
+            <h2 className="text-3xl font-bold mb-6 text-purple-700 text-center">Recent Videos</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {recentVideos.slice(0, 3).map((video) => (
+                <Link 
+                  href={video.url} 
+                  key={video.id}
+                  className="transform transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1"
+                >
+                  <Card className="flex flex-col border-0 bg-white relative overflow-hidden group h-full shadow-md">
+                    <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-500 to-purple-700 rounded-lg blur opacity-0 group-hover:opacity-100 transition duration-300"></div>
+                    <CardContent className="p-4 flex flex-col h-full border-0 text-gray-800 relative">
+                      <Image
+                        src={video.thumbnail}
+                        alt={decodeHtmlEntities(video.title)}
+                        width={300}
+                        height={150}
+                        className="rounded-lg mb-2 w-full"
+                      />
+                      <h3 className="font-semibold mb-2">{decodeHtmlEntities(video.title)}</h3>
+                      <div className="mt-auto pt-4">
+                        <Button 
+                          variant="outline" 
+                          className="w-full text-white pointer-events-none bg-purple-700 hover:bg-transparent"
+                        >
+                          <Youtube className="text-white mr-2 h-4 w-4" /> Watch Now
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </Link>
               ))}
             </div>
           </div>
