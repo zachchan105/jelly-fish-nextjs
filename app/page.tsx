@@ -11,7 +11,6 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import { useState, useEffect } from 'react'
 import { FiCopy, FiCheck } from 'react-icons/fi'
 import { GlowingButton } from '@/components/GlowingButton'
-import { Youtube } from 'lucide-react'
 //import { WalletMultiButton } from "@solana/wallet-adapter-react-ui"
 
 type Video = {
