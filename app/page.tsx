@@ -13,12 +13,12 @@ import { FiCopy, FiCheck } from 'react-icons/fi'
 import { GlowingButton } from '@/components/GlowingButton'
 //import { WalletMultiButton } from "@solana/wallet-adapter-react-ui"
 
-type Video = {
-  id: string;
-  title: string;
-  thumbnail: string;
-  url: string;
-};
+// type Video = {
+//   id: string;
+//   title: string;
+//   thumbnail: string;
+//   url: string;
+// };
 
 // function decodeHtmlEntities(text: string): string {
 //   const textarea = document.createElement('textarea');
