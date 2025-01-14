@@ -70,12 +70,12 @@ export default function Home() {
 
   useEffect(() => {
     setIsClient(true)
-    async function fetchVideos() {
-      const response = await fetch('/api/youtube');
-      const data: Video[] = await response.json();
-      setRecentVideos(data);
-    }
-    fetchVideos();
+    // async function fetchVideos() {
+    //   const response = await fetch('/api/youtube');
+    //   const data: Video[] = await response.json();
+    //   setRecentVideos(data);
+    // }
+    // fetchVideos();
   }, []);
 
 
@@ -287,7 +287,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="py-8">
+        {/* <section className="py-8">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold mb-6 text-purple-700 text-center">Recent Videos</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -322,7 +322,7 @@ export default function Home() {
               ))}
             </div>
           </div>
-        </section>
+        </section> */}
 
 
       </main>
