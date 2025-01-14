@@ -20,11 +20,11 @@ type Video = {
   url: string;
 };
 
-function decodeHtmlEntities(text: string): string {
-  const textarea = document.createElement('textarea');
-  textarea.innerHTML = text;
-  return textarea.value;
-}
+// function decodeHtmlEntities(text: string): string {
+//   const textarea = document.createElement('textarea');
+//   textarea.innerHTML = text;
+//   return textarea.value;
+// }
 
 const features = [
   {
@@ -64,7 +64,7 @@ const teamMembers = [
 export default function Home() {
   const [copied, setCopied] = useState(false)
   const [isClient, setIsClient] = useState(false)
-  const [recentVideos, setRecentVideos] = useState<Video[]>([]);
+  // const [recentVideos, setRecentVideos] = useState<Video[]>([]);
   const contractAddress = "GFreY9SAUz96P7qkF19A4dtA4TmZgtL9Gmu8gV9Kpump"
 
   useEffect(() => {
