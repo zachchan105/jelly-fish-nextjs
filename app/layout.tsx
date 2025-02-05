@@ -4,7 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import AppWalletProvider from "@/components/AppWalletProvider";
 import { Toaster } from "@/components/ui/toaster"
-import Script from "next/script";
+import GoogleAdsense from "@/components/GoogleAdsense";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -56,14 +56,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        <Script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8932137119645836"
-          crossOrigin="anonymous"
-          strategy="afterInteractive"
-        />
-      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
@@ -79,6 +71,7 @@ export default function RootLayout({
           <Toaster />
         </ThemeProvider>
       </body>
+      <GoogleAdsense pId="8932137119645836" />
     </html>
   );
 }
